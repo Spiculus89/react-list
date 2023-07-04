@@ -61,7 +61,7 @@ const App = () => {
   });
 
   return (
-    <div className="min-h-screen bg-blue-50 flex flex-col justify-center items-center font-sourceCodePro">
+    <div className="min-h-screen bg-blue-50 flex flex-col pt-20 items-center font-sourceCodePro">
       <h1 className="text-4xl font-bold text-blue-900 mb-8">List Comparison</h1>
       <AnimatePresence>
         <ul className="w-64 bg-white shadow rounded-lg mb-8">
