@@ -71,7 +71,7 @@ const App = () => {
               className="border-b p-4"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.8 }}
               exit={{ opacity: 0, y: 20 }}
             >
               <div className="flex items-center justify-between">
@@ -103,9 +103,6 @@ const App = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.8 }}
-          style={{
-            animation: "form-appear 0.8s",
-          }}
           >
             <div className="flex items-center mb-4">
               <p className="mr-2 text-blue-900">{comparisons[0][0].name}</p>
