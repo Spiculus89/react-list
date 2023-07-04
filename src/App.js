@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import "./index.css";
 
 const initialItems = [
@@ -62,21 +63,30 @@ const App = () => {
   return (
     <div className="min-h-screen bg-blue-50 flex flex-col justify-center items-center font-sourceCodePro">
       <h1 className="text-4xl font-bold text-blue-900 mb-8">List Comparison</h1>
-      <ul className="w-64 bg-white shadow rounded-lg mb-8">
-        {sortedItems.map((item) => (
-          <li key={item.position} className="border-b p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-lg font-semibold text-blue-900">
-                  {item.name}
-                </p>
-                <p className="text-blue-600">Position: {item.position}</p>
+      <AnimatePresence>
+        <ul className="w-64 bg-white shadow rounded-lg mb-8">
+          {sortedItems.map((item) => (
+            <motion.li
+              key={item.position}
+              className="border-b p-4"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              exit={{ opacity: 0, y: 20 }}
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-lg font-semibold text-blue-900">
+                    {item.name}
+                  </p>
+                  <p className="text-blue-600">Position: {item.position}</p>
+                </div>
+                <p className="text-xl font-bold text-blue-900">{item.score}</p>
               </div>
-              <p className="text-xl font-bold text-blue-900">{item.score}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+            </motion.li>
+          ))}
+        </ul>
+      </AnimatePresence>
       <button
         className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
         onClick={handleButtonClick}
@@ -85,7 +95,13 @@ const App = () => {
         Start Comparison
       </button>
       {comparisons.length > 0 && (
-        <form className="mt-8" onSubmit={handleFormSubmit}>
+        <form
+          className="mt-8"
+          onSubmit={handleFormSubmit}
+          style={{
+            animation: "form-appear 0.8s",
+          }}
+        >
           <div className="flex items-center mb-4">
             <p className="mr-2 text-blue-900">{comparisons[0][0].name}</p>
             <input
