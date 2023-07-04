@@ -94,40 +94,46 @@ const App = () => {
       >
         Start Comparison
       </button>
-      {comparisons.length > 0 && (
-        <form
+      <AnimatePresence>
+        {comparisons.length > 0 && (
+          <motion.form
           className="mt-8"
           onSubmit={handleFormSubmit}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.8 }}
           style={{
             animation: "form-appear 0.8s",
           }}
-        >
-          <div className="flex items-center mb-4">
-            <p className="mr-2 text-blue-900">{comparisons[0][0].name}</p>
-            <input
-              type="number"
-              name="score1"
-              required
-              className="border rounded-lg py-2 px-3 mr-2 w-16 text-center"
-              defaultValue={0}
-            />
-            <input
-              type="number"
-              name="score2"
-              required
-              className="border rounded-lg py-2 px-3 w-16 text-center"
-              defaultValue={0}
-            />
-            <p className="ml-2 text-blue-900">{comparisons[0][1].name}</p>
-          </div>
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
           >
-            Submit
-          </button>
-        </form>
-      )}
+            <div className="flex items-center mb-4">
+              <p className="mr-2 text-blue-900">{comparisons[0][0].name}</p>
+              <input
+                type="number"
+                name="score1"
+                required
+                className="border rounded-lg py-2 px-3 mr-2 w-16 text-center"
+                defaultValue={0}
+              />
+              <input
+                type="number"
+                name="score2"
+                required
+                className="border rounded-lg py-2 px-3 w-16 text-center"
+                defaultValue={0}
+              />
+              <p className="ml-2 text-blue-900">{comparisons[0][1].name}</p>
+            </div>
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+            >
+              Submit
+            </button>
+          </motion.form>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
